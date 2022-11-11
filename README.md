@@ -1,7 +1,7 @@
 # introToProgrammingFinalProject
 # Space Voyager
 
-Using Pygame to create launch/thrust animations and a smoke trail, along with a changing background.
+Using Pygame to create launch/thrust animations and a smoke trail, along with a changing background based on altitude and an altimeter. 
 
 ## Description
 
