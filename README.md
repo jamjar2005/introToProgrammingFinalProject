@@ -11,8 +11,8 @@ A 2d game where the player guides a rocket up from Earth to the moon, traveling 
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Python 3.x, Pygame, etc.
+* OS: Windows or MacO
+* Libraries: Pygame
 
 ### Installing
 
@@ -59,3 +59,4 @@ Inspiration, code snippets, etc.
 * [w3Schools](https://www.w3schools.com/python/default.asp)
 * [PyGame](https://www.pygame.org/docs/)
 * [Automate The Boring Stuff](https://automatetheboringstuff.com/)
+* [Clear Code](https://www.youtube.com/watch?v=yfcsB3SGsKY)
