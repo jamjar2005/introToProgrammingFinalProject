@@ -34,8 +34,8 @@ img_folder = os.path.join(game_folder, 'images')
 
 # Creating a class for my rocket sprite
 class Player(Sprite):
-    def _init_(self):
-        Sprite. __init__ (self)
+    def __init__(self):
+        Sprite. __init__(self)
         # using an image for Player sprite
         self.image = pg.image.load(os.path.join(img_folder, 'rocket1.1.png')).convert()
         self.image.set_colorkey(BLACK)
@@ -80,6 +80,7 @@ while running:
                 
 # drawing the background screen
     screen.fill(BLACK)
+    all_sprites.draw(screen)
     # buffer, flips display after everything is drawn
     pg.display.flip()
 pg.quit()
