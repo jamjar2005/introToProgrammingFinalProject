@@ -37,7 +37,7 @@ class Player(Sprite):
     def _init_(self):
         Sprite._init_(self)
         # using an image for Player sprite
-        self.image = pg.image.load(os.path.join(img_folder, '')).convert()
+        self.image = pg.image.load(os.path.join(img_folder, 'cohete_off.png')).convert()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH/2, HEIGHT/2)
@@ -54,6 +54,15 @@ screen = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("Space Voyager")
 clock = pg.time.Clock()
 
+# creating a group for all of my sprites
+all_sprites = pg.sprite.Group()
+
+# instantiating classes
+player = Player()
+
+# adding these instances to groups
+all_sprites.add(player)
+
 # game loop (while loop)
 running = True 
 while running:
@@ -64,6 +73,10 @@ while running:
         # checking for closed window
         if event.type == pg.QUIT:
             running = False
+    
+    # update
+    # updating all sprites
+    all_sprites.update()
                 
 # drawing the background screen
     screen.fill(BLACK)
