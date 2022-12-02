@@ -37,7 +37,7 @@ class Player(Sprite):
     def _init_(self):
         Sprite._init_(self)
         # using an image for Player sprite
-        self.image = pg.image.load(os.path.join(img_folder, 'pixil-frame-0 (1).png')).convert()
+        self.image = pg.image.load(os.path.join(img_folder, 'rocket1.1.png')).convert()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH/2, HEIGHT/2)
