@@ -35,7 +35,7 @@ img_folder = os.path.join(game_folder, 'images')
 # Creating a class for my rocket sprite
 class Player(Sprite):
     def _init_(self):
-        Sprite._init_(self)
+        Sprite. __init__ (self)
         # using an image for Player sprite
         self.image = pg.image.load(os.path.join(img_folder, 'rocket1.1.png')).convert()
         self.image.set_colorkey(BLACK)
