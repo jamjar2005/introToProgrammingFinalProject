@@ -13,6 +13,8 @@ along with a changing background based on altitude and an altimeter.
 
 # import libraries
 import pygame as pg
+from pygame.sprite import Sprite
+import os
 
 # built in
 
@@ -22,8 +24,28 @@ import pygame as pg
 from settings import *
 
 # global variables
-
+vec = pg.math.Vector2
 # utilit
+
+# setting up asset folders (Used for sprite later)
+game_folder = os.path.dirname(__file__)
+img_folder = os.path.join(game_folder, 'images')
+
+
+# Creating a class for my rocket sprite
+class Player(Sprite):
+    def _init_(self):
+        Sprite._init_(self)
+        # using an image for Player sprite
+        self.image = pg.image.load(os.path.join(img_folder, '')).convert()
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        self.rect.center = (WIDTH/2, HEIGHT/2)
+        self.pos = vec(WIDTH/2, HEIGHT/2)
+        self.vel = vec(0,0)
+        self.acc = vec(0,0)
+        print(self.rect.center)
+
 
 # initializing pygame and creating a visible window
 pg.init()
