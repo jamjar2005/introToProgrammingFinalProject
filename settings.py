@@ -14,3 +14,10 @@ BLACK = (0, 0, 0)
 
 # Putting all defined colors into an array 
 COLORS = [RED, GREEN, BLUE, ORANGE, CYAN, WHITE, BLACK]
+
+# player settings
+PLAYER_GRAV = 0.8
+PLAYER_FRIC = 0.1
+
+# putting player settings into an array
+PSETTINGS = [PLAYER_GRAV, PLAYER_FRIC]

@@ -45,7 +45,21 @@ class Player(Sprite):
         self.vel = vec(0,0)
         self.acc = vec(0,0)
         print(self.rect.center)
-
+    def controls(self):
+        keys = pg.key.get_pressed()
+        if keys[pg.K_a]:
+            self.acc.x = -5
+        if keys[pg.K_d]:
+            self.acc.x = 5
+    def update(self):
+        self.acc = vec(0,0)
+        self.controls()
+        # adding friction
+        self.acc.x += self.vel.x * -0.1
+        # add y
+        self.vel += self.acc
+        self.pos += self.vel + 0.5 * self.acc
+        self.rect = self.pos
 
 # initializing pygame and creating a visible window
 pg.init()
