@@ -51,6 +51,10 @@ class Player(Sprite):
             self.acc.x = -5
         if keys[pg.K_d]:
             self.acc.x = 5
+        if keys[pg.K_LEFT]:
+            self.acc.x = -5
+        if keys[pg.K_RIGHT]:
+            self.acc.x = 5
     def update(self):
         self.acc = vec(0,0)
         self.controls()
