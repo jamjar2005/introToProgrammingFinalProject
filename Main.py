@@ -31,6 +31,15 @@ vec = pg.math.Vector2
 game_folder = os.path.dirname(__file__)
 img_folder = os.path.join(game_folder, 'images')
 
+# defining a function for an altimeter 
+def draw_text(text, size, color, x, y):
+    font_name = pg.font.match_font('calibri')
+    font = pg.font.Font(font_name, size)
+    text_surface = font.render(text, True, color)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x,y)
+    screen.blit(text_surface, text_rect)
+
 
 # Creating a class for my rocket sprite
 class Player(Sprite):
@@ -40,8 +49,8 @@ class Player(Sprite):
         self.image = pg.image.load(os.path.join(img_folder, 'pixil-frame-0 (1).png')).convert()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH/2, HEIGHT/1.3)
-        self.pos = vec(WIDTH/2, HEIGHT/2)
+        self.rect.center = (WIDTH/2, HEIGHT/2)
+        self.pos = vec(WIDTH/3, HEIGHT/2.2)
         self.vel = vec(0,0)
         self.acc = vec(0,0)
         print(self.rect.center)
@@ -65,6 +74,14 @@ class Player(Sprite):
         self.pos += self.vel + 0.5 * self.acc
         self.rect = self.pos
 
+class Ground(Sprite):
+    def __init__(self, x, y, w, h):
+        Sprite.__init__(self)
+        self.image = pg.Surface((w, h))
+        self.image.fill(DARK_GREEN)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
 # initializing pygame and creating a visible window
 pg.init()
 pg.mixer.init()
@@ -72,17 +89,18 @@ screen = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("Space Voyager")
 clock = pg.time.Clock()
 
-# creating a group for all of my sprites
+# creating groups
 all_sprites = pg.sprite.Group()
+all_plats = pg.sprite.Group()
 
 # instantiating classes
 player = Player()
-
+ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
 # adding these instances to groups
 all_sprites.add(player)
-
+all_plats.add(ground)
 # game loop (while loop)
-running = True 
+running = True
 while running:
     #this keeps the game running using the clock
     clock.tick(FPS)
@@ -91,14 +109,16 @@ while running:
         # checking for closed window
         if event.type == pg.QUIT:
             running = False
-    
     # update
     # updating all sprites
     all_sprites.update()
+    all_plats.update()
                 
 # drawing the background screen
     screen.fill(BLACK)
     all_sprites.draw(screen)
+    all_plats.draw(screen)
+    draw_text("Altitude: " + str(ALTITUDE), 22, BLUE, WIDTH/12, HEIGHT/1.15)
     # buffer, flips display after everything is drawn
     pg.display.flip()
 pg.quit()
