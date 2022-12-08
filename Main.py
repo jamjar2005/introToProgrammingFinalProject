@@ -74,6 +74,7 @@ class Player(Sprite):
         self.pos += self.vel + 0.5 * self.acc
         self.rect = self.pos
 
+# creating a class for the ground
 class Ground(Sprite):
     def __init__(self, x, y, w, h):
         Sprite.__init__(self)
@@ -82,6 +83,20 @@ class Ground(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
+# creating a class for the moon
+class Moon(Sprite):
+    def __init__(self):
+        Sprite. __init__(self)
+        # using an image for Player sprite
+        self.image = pg.image.load(os.path.join(img_folder, 'My project (9).png')).convert()
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        self.rect.center = (WIDTH/1.2, HEIGHT/4)
+        self.pos = vec(WIDTH, HEIGHT)
+        self.vel = vec(0,0)
+        self.acc = vec(0,0)
+        print(self.rect.center)
 # initializing pygame and creating a visible window
 pg.init()
 pg.mixer.init()
@@ -96,8 +111,9 @@ all_plats = pg.sprite.Group()
 # instantiating classes
 player = Player()
 ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
+moon = Moon()
 # adding these instances to groups
-all_sprites.add(player)
+all_sprites.add(player, moon)
 all_plats.add(ground)
 # game loop (while loop)
 running = True
