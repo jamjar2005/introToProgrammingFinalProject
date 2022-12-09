@@ -105,11 +105,11 @@ class Moon(Sprite):
 
 # creating a class for asteroids/space debris
 '''class Debris(Sprite):
-    def __init__(self, x, y, w, h):
+    def __init__(self, x, y, w, h, color):
         Sprite. __init__(self)
         self.image = pg.Surface((w, h))
-        #self.color = color
-        self.image.fill(BLACK)
+        self.color = color
+        self.image.fill(color)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -130,7 +130,7 @@ all_plats = pg.sprite.Group()
 player = Player()
 ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
 moon = Moon()
-'''debris = Debris(x = 100, y = 100, w = 100, h = 100)'''
+'''debris = Debris()'''
 
 '''for i in range(100):
     m = Debris(randint(0, WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(), colorbyte(), colorbyte()))
