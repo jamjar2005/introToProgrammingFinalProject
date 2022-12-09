@@ -15,6 +15,7 @@ along with a changing background based on altitude and an altimeter.
 import pygame as pg
 from pygame.sprite import Sprite
 import os
+from random import *
 
 # built in
 
@@ -97,6 +98,19 @@ class Moon(Sprite):
         self.vel = vec(0,0)
         self.acc = vec(0,0)
         print(self.rect.center)
+
+# creating a class for asteroids/space debris
+class Debris(Sprite):
+    def __init__(self, x, y, w, h):
+        Sprite. __init__(self)
+        self.image = pg.Surface((w, h))
+        self.color = COLORS
+        self.image.fill(COLORS)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+    def update(self):
+        self.rect.x += 1
 # initializing pygame and creating a visible window
 pg.init()
 pg.mixer.init()
@@ -112,14 +126,26 @@ all_plats = pg.sprite.Group()
 player = Player()
 ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
 moon = Moon()
-# adding these instances to groups
-all_sprites.add(player, moon)
+debris = Debris()
+
+for i in range(100):
+    m = Debris(randint(0, WIDTH), randint(0, HEIGHT), 25, 25)
+    all_sprites.add(m)
+    debris.add(m)
+    print(m)
+# adding instances to groups
+all_sprites.add(player, moon, debris)
 all_plats.add(ground)
 # game loop (while loop)
 running = True
 while running:
     #this keeps the game running using the clock
     clock.tick(FPS)
+
+    debriscollide = pg.sprite.spritecollide(player, debris, True)
+    if debriscollide:
+        print("Watch out!")
+        # health -= 1
 
     for event in pg.event.get():
         # checking for closed window
