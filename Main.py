@@ -41,6 +41,10 @@ def draw_text(text, size, color, x, y):
     text_rect.midtop = (x,y)
     screen.blit(text_surface, text_rect)
 
+    # defining the function colorbyte
+def colorbyte():
+    return random.randint(0, 255)
+
 
 # Creating a class for my rocket sprite
 class Player(Sprite):
@@ -129,7 +133,7 @@ moon = Moon()
 debris = Debris()
 
 for i in range(100):
-    m = Debris(randint(0, WIDTH), randint(0, HEIGHT), 25, 25)
+    m = Debris(randint(0, WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(), colorbyte(), colorbyte()))
     all_sprites.add(m)
     debris.add(m)
     print(m)
@@ -145,7 +149,7 @@ while running:
     debriscollide = pg.sprite.spritecollide(player, debris, True)
     if debriscollide:
         print("Watch out!")
-        # health -= 1
+        STRENGTH -= 1
 
     for event in pg.event.get():
         # checking for closed window
@@ -161,6 +165,7 @@ while running:
     all_sprites.draw(screen)
     all_plats.draw(screen)
     draw_text("Altitude: " + str(ALTITUDE), 22, BLUE, WIDTH/12, HEIGHT/1.15)
+    draw_text("Strength: " + str(STRENGTH), 22, RED, WIDTH/6, HEIGHT/1.15)
     # buffer, flips display after everything is drawn
     pg.display.flip()
 pg.quit()

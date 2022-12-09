@@ -3,6 +3,7 @@ WIDTH = 1200
 HEIGHT = 750
 FPS = 30
 ALTITUDE = 0
+STRENGTH = 10
 
 # Defining colors
 RED = (255, 0, 0)
