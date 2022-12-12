@@ -41,11 +41,6 @@ def draw_text(text, size, color, x, y):
     text_rect.midtop = (x,y)
     screen.blit(text_surface, text_rect)
 
-    # defining the function colorbyte
-'''def colorbyte():
-    return random.randint(0, 255)'''
-
-
 # Creating a class for my rocket sprite
 class Player(Sprite):
     def __init__(self):
@@ -69,6 +64,14 @@ class Player(Sprite):
             self.acc.x = -5
         if keys[pg.K_RIGHT]:
             self.acc.x = 5
+        if keys[pg.K_g]:
+            player.rect.y -= 1.5
+            ground.rect.y += 1
+            moon.rect.y += 1
+        '''else: 
+            player.rect.y += 1.5
+            ground.rect.y -= 1
+            moon.rect.y -= 1'''
     def update(self):
         self.acc = vec(0,0)
         self.controls()
@@ -115,6 +118,16 @@ class Debris(Sprite):
         self.rect.y = y
     def update(self):
         self.rect.y += 1
+
+# creating a class for an invisible barrier
+class Barrier(Sprite):
+    def __init__(self, x, y, w, h):
+        Sprite.__init__(self)
+        self.image = pg.Surface((w, h))
+        self.image.fill(BLACK)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
 # initializing pygame and creating a visible window
 pg.init()
 pg.mixer.init()
@@ -131,25 +144,20 @@ debris = pg.sprite.Group()
 player = Player()
 ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
 moon = Moon()
-
+barrier = Barrier(0, HEIGHT/4, WIDTH, 1)
 for i in range(100):
-    m = Debris(randint(0, WIDTH), randint(0, HEIGHT), 25, 25, (WHITE))
+    m = Debris(randint(0, WIDTH), randint(0, HEIGHT), 25, 25, (ORANGE))
     all_sprites.add(m)
     debris.add(m)
     print(m)
 # adding instances to groups
 all_sprites.add(player, moon)
-all_plats.add(ground)
+all_plats.add(ground, barrier)
 # game loop (while loop)
 running = True
 while running:
     #this keeps the game running using the clock
     clock.tick(FPS)
-
-    '''debriscollide = pg.sprite.spritecollide(player, debris, True)
-    if debriscollide:
-        print("Watch out!")
-        STRENGTH -= 1'''
 
     for event in pg.event.get():
         # checking for closed window
