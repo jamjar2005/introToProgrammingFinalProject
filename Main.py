@@ -118,14 +118,14 @@ class Debris(Sprite):
         self.rect.x = x
         self.rect.y = y
     def update(self):
-        self.rect.y += 1
+        self.rect.y += 5
 
 # creating a class for an invisible barrier
 class Barrier(Sprite):
     def __init__(self, x, y, w, h):
         Sprite.__init__(self)
         self.image = pg.Surface((w, h))
-        self.image.fill(RED)
+        self.image.fill(BLACK)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -146,11 +146,15 @@ player = Player()
 ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
 moon = Moon()
 barrier = Barrier(0, HEIGHT/1.05, WIDTH, 1)
-for i in range(50):
-    m = Debris(randint(0, WIDTH), randint(0, HEIGHT/5), 25, 25, (ORANGE))
-    all_sprites.add(m)
-    debris.add(m)
-    print(m)
+
+def spawn(n):
+    for i in range(n):
+        m = Debris(randint(0, WIDTH), randint(0, HEIGHT/2), 25, 25, (ORANGE))
+        all_sprites.add(m)
+        debris.add(m)
+        print(m)
+spawn(10)
+
 # adding instances to groups
 all_sprites.add(player, moon)
 all_plats.add(ground, barrier)
@@ -160,6 +164,15 @@ while running:
     #this keeps the game running using the clock
     clock.tick(FPS)
 
+    # checking where mobs are and kills them if they are off screen
+    for m in debris:
+        if m.rect.y > HEIGHT:
+            m.kill()
+            print(len(debris))
+    # this checks if mobs are gone and spawns more
+    if len(debris) == 0:
+        spawn(15)
+
     for event in pg.event.get():
         # checking for closed window
         if event.type == pg.QUIT:
@@ -168,7 +181,10 @@ while running:
     # updating all sprites
     all_sprites.update()
     all_plats.update()
-                
+    for d in debris:
+        if d.rect.y > HEIGHT:
+            print("passed.y...")
+    
 # drawing the background screen
     screen.fill(BLACK)
     all_sprites.draw(screen)
