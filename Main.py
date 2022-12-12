@@ -3,6 +3,7 @@ Using Pygame to create launch/thrust animations and a smoke trail,
 along with a changing background based on altitude and an altimeter.
 
 '''
+# James Haven - Period 3
 
 # sources:
 # Mr. Cozort's source code files
@@ -124,7 +125,7 @@ class Barrier(Sprite):
     def __init__(self, x, y, w, h):
         Sprite.__init__(self)
         self.image = pg.Surface((w, h))
-        self.image.fill(BLACK)
+        self.image.fill(RED)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -144,9 +145,9 @@ debris = pg.sprite.Group()
 player = Player()
 ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
 moon = Moon()
-barrier = Barrier(0, HEIGHT/4, WIDTH, 1)
-for i in range(100):
-    m = Debris(randint(0, WIDTH), randint(0, HEIGHT), 25, 25, (ORANGE))
+barrier = Barrier(0, HEIGHT/1.05, WIDTH, 1)
+for i in range(50):
+    m = Debris(randint(0, WIDTH), randint(0, HEIGHT/5), 25, 25, (ORANGE))
     all_sprites.add(m)
     debris.add(m)
     print(m)
@@ -163,7 +164,7 @@ while running:
         # checking for closed window
         if event.type == pg.QUIT:
             running = False
-    # update
+
     # updating all sprites
     all_sprites.update()
     all_plats.update()
@@ -172,6 +173,7 @@ while running:
     screen.fill(BLACK)
     all_sprites.draw(screen)
     all_plats.draw(screen)
+    # drawing global variables ALTITUDE and STRENGTH on the screen.
     draw_text("Altitude: " + str(ALTITUDE), 22, BLUE, WIDTH/12, HEIGHT/1.15)
     draw_text("Strength: " + str(STRENGTH), 22, RED, WIDTH/1.12, HEIGHT/1.15)
     # buffer, flips display after everything is drawn
