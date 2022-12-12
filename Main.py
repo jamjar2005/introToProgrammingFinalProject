@@ -104,7 +104,7 @@ class Moon(Sprite):
         print(self.rect.center)
 
 # creating a class for asteroids/space debris
-'''class Debris(Sprite):
+class Debris(Sprite):
     def __init__(self, x, y, w, h, color):
         Sprite. __init__(self)
         self.image = pg.Surface((w, h))
@@ -114,7 +114,7 @@ class Moon(Sprite):
         self.rect.x = x
         self.rect.y = y
     def update(self):
-        self.rect.x += 1'''
+        self.rect.y += 1
 # initializing pygame and creating a visible window
 pg.init()
 pg.mixer.init()
@@ -125,20 +125,20 @@ clock = pg.time.Clock()
 # creating groups
 all_sprites = pg.sprite.Group()
 all_plats = pg.sprite.Group()
+debris = pg.sprite.Group()
 
 # instantiating classes
 player = Player()
 ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
 moon = Moon()
-'''debris = Debris()'''
 
-'''for i in range(100):
-    m = Debris(randint(0, WIDTH), randint(0, HEIGHT), 25, 25, (colorbyte(), colorbyte(), colorbyte()))
+for i in range(100):
+    m = Debris(randint(0, WIDTH), randint(0, HEIGHT), 25, 25, (WHITE))
     all_sprites.add(m)
     debris.add(m)
-    print(m)'''
+    print(m)
 # adding instances to groups
-all_sprites.add(player, moon) #debris)
+all_sprites.add(player, moon)
 all_plats.add(ground)
 # game loop (while loop)
 running = True
