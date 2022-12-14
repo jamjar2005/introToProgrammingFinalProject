@@ -66,9 +66,12 @@ class Player(Sprite):
         if keys[pg.K_RIGHT]:
             self.acc.x = 5
         if keys[pg.K_g]:
-            #player.rect.y -= 1.01
+            player.rect.y -= 1.01
             ground.rect.y += 1
             moon.rect.y += 1
+        #if self.rect.y < HEIGHT/2:
+            #self.rect.y = 0
+            exhaust(self.pos[0] + 195 , self.pos[1] + 375)
         '''else: 
             player.rect.y += 1.5
             ground.rect.y -= 1
@@ -120,6 +123,21 @@ class Debris(Sprite):
     def update(self):
         self.rect.y += 5
 
+class Smoke(Sprite):
+    def __init__(self, x, y, w, h, color):
+        Sprite. __init__(self)
+        self.image = pg.Surface((w, h))
+        self.color = color
+        self.image.fill(color)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+    def update(self):
+        self.rect.x += 5 * choice([-1,1])
+        self.rect.y += 5 * randint(1,3)
+        if self.rect.y > HEIGHT:
+            self.kill()
+
 # creating a class for an invisible barrier
 class Barrier(Sprite):
     def __init__(self, x, y, w, h):
@@ -140,12 +158,19 @@ clock = pg.time.Clock()
 all_sprites = pg.sprite.Group()
 all_plats = pg.sprite.Group()
 debris = pg.sprite.Group()
+smokes = pg.sprite.Group()
 
 # instantiating classes
 player = Player()
 ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
 moon = Moon()
 barrier = Barrier(0, HEIGHT/1.05, WIDTH, 1)
+
+def exhaust(x,y):
+    for i in range (3):
+        e = Smoke(x, y, 25, 25, WHITE)
+        smokes.add(e)
+        all_sprites.add(e)
 
 def spawn(n):
     for i in range(n):
