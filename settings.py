@@ -1,3 +1,4 @@
+from random import *
 # game settings
 WIDTH = 1200
 HEIGHT = 750
@@ -14,9 +15,10 @@ CYAN = (0, 255, 255)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 DARK_GREEN = (0, 115, 0)
+GRAY = (50, 50, 50)
 
 # Putting all defined colors into an array 
-COLORS = [RED, GREEN, BLUE, ORANGE, CYAN, WHITE, BLACK, DARK_GREEN]
+COLORS = [RED, GREEN, BLUE, ORANGE, CYAN, WHITE, BLACK, DARK_GREEN, GRAY]
 
 # player settings
 PLAYER_GRAV = 0.8

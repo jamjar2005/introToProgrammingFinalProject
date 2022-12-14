@@ -168,7 +168,7 @@ barrier = Barrier(0, HEIGHT/1.05, WIDTH, 1)
 
 def exhaust(x,y):
     for i in range (3):
-        e = Smoke(x, y, 25, 25, WHITE)
+        e = Smoke(x, y, 25, 25, RED)
         smokes.add(e)
         all_sprites.add(e)
 
