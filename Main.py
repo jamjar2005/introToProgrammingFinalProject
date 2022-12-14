@@ -66,7 +66,7 @@ class Player(Sprite):
         if keys[pg.K_RIGHT]:
             self.acc.x = 5
         if keys[pg.K_g]:
-            player.rect.y -= 1.5
+            #player.rect.y -= 1.01
             ground.rect.y += 1
             moon.rect.y += 1
         '''else: 
@@ -149,12 +149,12 @@ barrier = Barrier(0, HEIGHT/1.05, WIDTH, 1)
 
 def spawn(n):
     for i in range(n):
+        #m = Debris(randint(0, WIDTH), randint(0, HEIGHT/2), 25, 25, (ORANGE))
         m = Debris(randint(0, WIDTH), randint(0, HEIGHT/2), 25, 25, (ORANGE))
         all_sprites.add(m)
         debris.add(m)
         print(m)
 spawn(10)
-
 # adding instances to groups
 all_sprites.add(player, moon)
 all_plats.add(ground, barrier)
@@ -170,7 +170,7 @@ while running:
             m.kill()
             print(len(debris))
     # this checks if mobs are gone and spawns more
-    if len(debris) == 0:
+    if len(debris) <= 7:
         spawn(15)
 
     for event in pg.event.get():
