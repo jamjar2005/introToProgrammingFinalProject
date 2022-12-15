@@ -4,6 +4,7 @@ HEIGHT = 750
 FPS = 30
 ALTITUDE = 0
 STRENGTH = 10
+WINNER = "!"
 
 # Defining colors
 RED = (255, 0, 0)

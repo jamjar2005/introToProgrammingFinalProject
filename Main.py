@@ -1,6 +1,13 @@
 '''
 goals: 
-Using Pygame to create launch/thrust animations and a smoke trail along with moving debris.
+- Using Pygame to create launch/thrust animations and a smoke trail along with moving debris.
+- Reach the finish line
+rules:
+- Must reach finish line
+Feedback:
+- You win if you reach the finish line
+Freedom:
+- You can press G to ignite rocket and move laterally
 
 '''
 # James Haven - Period 3
@@ -137,7 +144,7 @@ class Barrier(Sprite):
     def __init__(self, x, y, w, h):
         Sprite.__init__(self)
         self.image = pg.Surface((w, h))
-        self.image.fill(BLACK)
+        self.image.fill(RED)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -158,7 +165,7 @@ smokes = pg.sprite.Group()
 player = Player()
 ground = Ground(0, HEIGHT/1.05, WIDTH, 50)
 moon = Moon()
-barrier = Barrier(0, HEIGHT/1.05, WIDTH, 1)
+barrier = Barrier(0, HEIGHT/300, WIDTH, 1)
 
 # defining function "exhaust()" and parameters "x, y" and using "i in range" to spawn in anywhere from 1-3 sprites per refresh
 # also defining x, y, dimensions, and color
@@ -210,7 +217,7 @@ while running:
     all_sprites.update()
     all_plats.update()
 
-    # using a for loop to check if sprites in the debris group pass by the bottom of the screen and printing a message if so
+    # using a for loop to check if sprites in the debris group pass by the bottom of the screen and print a message if so
     for d in debris:
         if d.rect.y > HEIGHT:
             print("passed.y...")
@@ -223,7 +230,11 @@ while running:
     # drawing global variables ALTITUDE and STRENGTH on the screen.
     draw_text("Altitude: " + str(ALTITUDE), 22, BLUE, WIDTH/12, HEIGHT/1.15)
     draw_text("Strength: " + str(STRENGTH), 22, RED, WIDTH/1.12, HEIGHT/1.15)
-    
+
+    # using a conditional statment to display "YOU WIN" on screen if player.rect.y is <= barrier.rect.y
+    if player.rect.y <= (barrier.rect.y):
+        draw_text("YOU WIN " + str(WINNER), + 125, GREEN, WIDTH/2, HEIGHT/5)
+
     # buffer, flips display after everything is drawn
     pg.display.flip()
 pg.quit()
