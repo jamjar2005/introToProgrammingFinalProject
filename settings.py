@@ -1,5 +1,4 @@
-from random import *
-# game settings
+# defining game settings
 WIDTH = 1200
 HEIGHT = 750
 FPS = 30
@@ -17,12 +16,12 @@ BLACK = (0, 0, 0)
 DARK_GREEN = (0, 115, 0)
 GRAY = (50, 50, 50)
 
-# Putting all defined colors into an array 
+# Putting all defined colors into an array (list)
 COLORS = [RED, GREEN, BLUE, ORANGE, CYAN, WHITE, BLACK, DARK_GREEN, GRAY]
 
-# player settings
+# defining player settings
 PLAYER_GRAV = 0.8
 PLAYER_FRIC = 0.1
 
-# putting player settings into an array
+# putting player settings into an array (list)
 PSETTINGS = [PLAYER_GRAV, PLAYER_FRIC]
