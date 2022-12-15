@@ -131,7 +131,7 @@ class Smoke(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-    # defining update(self) function and randint to create possibl spawn area for class "Smoke" (rocket trail)
+    # defining update(self) function and randint to create possible spawn area for class "Smoke" (rocket trail)
     def update(self):
         self.rect.x += 5 * choice([-1,1])
         self.rect.y += 5 * randint(1,3)
