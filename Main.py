@@ -227,9 +227,20 @@ while running:
     all_sprites.draw(screen)
     all_plats.draw(screen)
 
-    # drawing global variables ALTITUDE and STRENGTH on the screen.
+    # drawing global variable ALTITUDE on the screen.
     draw_text("Altitude: " + str(ALTITUDE), 22, BLUE, WIDTH/12, HEIGHT/1.15)
-    draw_text("Strength: " + str(STRENGTH), 22, RED, WIDTH/1.12, HEIGHT/1.15)
+
+    # using conditional statements to display an altitude number on the screen if the rocket passes a certain height
+    # each number corresponds to a certain sector of the screen
+    if player.rect.y <= (HEIGHT/3):
+        draw_text("Altitude: " + str(ALTITUDE + 10000), 22, CYAN, WIDTH/12, HEIGHT/1.5)
+    if player.rect.y <= (HEIGHT/5):
+        draw_text("Altitude: " + str(ALTITUDE + 20000), 22, GREEN, WIDTH/12, HEIGHT/2)
+    if player.rect.y <= (HEIGHT/10):
+        draw_text("Altitude: " + str(ALTITUDE + 30000), 22, ORANGE, WIDTH/12, HEIGHT/3)
+    if player.rect.y <= (HEIGHT/200):
+        draw_text("Altitude: " + str(ALTITUDE + 40000), 22, RED, WIDTH/12, HEIGHT/4.5)
+        
 
     # using a conditional statment to display "YOU WIN" on screen if player.rect.y is <= barrier.rect.y
     if player.rect.y <= (barrier.rect.y):
