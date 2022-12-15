@@ -1,6 +1,6 @@
 '''
+goals of project: - Using Pygame to create launch/thrust animations and a smoke trail along with moving debris and an altimeter
 goals: 
-- Using Pygame to create launch/thrust animations and a smoke trail along with moving debris.
 - Reach the finish line
 rules:
 - Must reach finish line
