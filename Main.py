@@ -15,6 +15,7 @@ Freedom:
 # sources:
 # Mr. Cozort's source code files
 # Mr. Cozort
+# W3 Schools(https://www.w3schools.com/colors/colors_rgb.asp)
 
 # import libraries
 import pygame as pg
