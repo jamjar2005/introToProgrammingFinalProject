@@ -14,8 +14,7 @@ Freedom:
 
 # sources:
 # Mr. Cozort's source code files
-# for help with particles: https://www.youtube.com/watch?v=yfcsB3SGsKY (Clear code)
-# for help with sprites: https://www.youtube.com/watch?v=hDu8mcAlY4E (Clear code)
+# Mr. Cozort
 
 # import libraries
 import pygame as pg
@@ -121,7 +120,7 @@ class Debris(Sprite):
     def update(self):
         self.rect.y += 5
 
-# crating class "Smoke" for rocket trail
+# crating class "Smoke" for rocket trail (Mr. Cozort helped)
 class Smoke(Sprite):
     def __init__(self, x, y, w, h, color):
         Sprite. __init__(self)
@@ -131,7 +130,7 @@ class Smoke(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-    # defining update(self) function and randint to create possible spawn area for class "Smoke" (rocket trail)
+    # defining update(self) function and randint to create possible spawn area for class "Smoke" (rocket trail) (Mr. Cozort helped)
     def update(self):
         self.rect.x += 5 * choice([-1,1])
         self.rect.y += 5 * randint(1,3)
@@ -168,7 +167,7 @@ moon = Moon()
 barrier = Barrier(0, HEIGHT/300, WIDTH, 1)
 
 # defining function "exhaust()" and parameters "x, y" and using "i in range" to spawn in anywhere from 1-3 sprites per refresh
-# also defining x, y, dimensions, and color
+# also defining x, y, dimensions, and color (Mr. Cozort helped)
 def exhaust(x,y):
     for i in range (3):
         e = Smoke(x, y, 25, 25, RED)
@@ -177,7 +176,7 @@ def exhaust(x,y):
         all_sprites.add(e)
 
 # defining function "Spawn()" and parameter "n" 
-# using randint to spawn sprites from class "Debris" randomly anywhere within the given dimensions.
+# using randint to spawn sprites from class "Debris" randomly anywhere within the given dimensions. (Mr. Cozort helped)
 def spawn(n):
     for i in range(n):
         m = Debris(randint(0, WIDTH), randint(0, HEIGHT/2), 25, 25, (ORANGE))
@@ -198,7 +197,7 @@ while running:
     #this keeps the game running using the clock
     clock.tick(FPS)
 
-    # checking where mobs are and killing them if they are off screen using "m.kill()" method
+    # checking where mobs are and killing them if they are off screen using "m.kill()" method (Mr. Cozort helped)
     for m in debris:
         if m.rect.y > HEIGHT:
             m.kill()
